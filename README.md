@@ -10,6 +10,9 @@ Que queres?
 7 de agosto:
 - Este dia se celebra la batalla de boyaca, la cual ocurrió en 1819 cerca al puente de boyaca entre las ciudades de Tunja y Bogota. El resultado de esta batalla entre el ejercito patriota comandado por Simon Bolivar y el ejercito realista comandado por el coronel Jose maria Barreiro consolido la independencia de la Nueva Granada, la cual se llamaria despues la Gran Colombia.
 
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/2e002882-fca1-4671-8c88-6ca016193d02" />
+
+
 Celebraciones importantes
 Feria de Flores en Medellin:
 - Es uno de los eventos culturales mas importantes que se celebran cada año en Colombia.
