@@ -15,3 +15,6 @@ Feria de Flores en Medellin:
 - Es uno de los eventos culturales mas importantes que se celebran cada año en Colombia.
 - Generalmente se celebra entre los ultimos dias de Julio y los primeros dias de Agosto.
 - En dispersos sitios de la ciudad se celebran diferentes eventos, como conciertos musicales, festivales de troba, pajaros y flores, el desfile de carros antiguos, visitas a fincas silleteras y el evento principal: Desfile de silleteros. 
+
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/17ca10f5-0693-40e3-b79c-dc958b90d75a" />
+
