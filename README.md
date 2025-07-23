@@ -22,4 +22,7 @@ Feria de Flores en Medellin:
 
 -------------------------------
 18 de agosto: Asunción de la Virgen María
+Es una festividad religiosa católica en donde se celebra que la virgen María ha ascendido a los cielos y ha terminado su vida terrenal. Este día festivo fue oficializado por el papa Pío XII el 1 de noviembre de 1950. En otros países es muy común que este día hagan procesiones pero en Colombia no es una práctica que se lleve a cabo. 
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/e548183a-84ad-42d3-a637-ba7c9bbd493a" />
+
 
