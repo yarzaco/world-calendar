@@ -1,0 +1,39 @@
+{
+  "countries": {
+    "colombia": {
+      "name": "Colombia",
+      "holidays": [
+        {
+          "date": "08-07",
+          "articleId": "colombia_08_07",
+          "seoSlug": "batalla-de-boyacá"
+        },
+        {
+          "date": "07-20",
+          "articleId": "colombia_07_20",
+          "seoSlug": "dia-de-la-independencia"
+        },
+        {
+          "date": "01-01",
+          "articleId": "colombia_01_01",
+          "seoSlug": "ano-nuevo"
+        }
+      ]
+    },
+    "usa": {
+      "name": "United States",
+      "holidays": [
+        {
+          "date": "07-04",
+          "articleId": "usa_07_04",
+          "seoSlug": "independence-day"
+        },
+        {
+          "date": "01-01",
+          "articleId": "usa_01_01",
+          "seoSlug": "new-years-day"
+        }
+      ]
+    }
+  }
+}
