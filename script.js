@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!foundArticleId) {
       console.error("Article not found for path:", path)
-      Swal.fire("Error", "Article not found.", "error")
+      Swal.fire("Error", "Article not found.", "error") // This is the error message the user is seeing
       window.history.pushState({}, "", "/") // Redirect to home
       renderCalendarView()
       return
@@ -283,8 +283,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const articleContent = i18next.t(`translation.articles.${foundArticleId}`, { returnObjects: true })
 
     if (!articleContent || !articleContent.title) {
+      // This is the second check that could fail
       console.error("Article content not found in translations for ID:", foundArticleId)
-      Swal.fire("Error", "Article content missing.", "error")
+      Swal.fire("Error", "Article content missing.", "error") // This is the error message the user is seeing
       window.history.pushState({}, "", "/") // Redirect to home
       renderCalendarView()
       return
