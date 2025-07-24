@@ -1,0 +1,67 @@
+{
+  "translation": {
+    "appTitle": "National Holidays Calendar",
+    "home": "Home",
+    "about": "About Us",
+    "contact": "Contact",
+    "privacy": "Privacy",
+    "selectCountry": "Select Country:",
+    "holidaysFor": "Holidays for {{countryName}}",
+    "backToCalendar": "Back to Calendar",
+    "days": {
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat",
+      "sunday": "Sun"
+    },
+    "months": {
+      "0": "January",
+      "1": "February",
+      "2": "March",
+      "3": "April",
+      "4": "May",
+      "5": "June",
+      "6": "July",
+      "7": "August",
+      "8": "September",
+      "9": "October",
+      "10": "November",
+      "11": "December"
+    },
+    "articles": {
+      "colombia_08_07": {
+        "title": "Battle of Boyacá",
+        "shortText": "Battle of Boyacá",
+        "image": "colombia_08_07.png",
+        "content": "<p>August 7th commemorates the Battle of Boyacá, a crucial event in Colombia's independence. It was the battle that sealed the country's independence.</p><p>This day is a national holiday and is celebrated with parades and civic acts throughout the territory.</p>"
+      },
+      "colombia_07_20": {
+        "title": "Colombian Independence Day",
+        "shortText": "Independence Day",
+        "image": "colombia_07_20.png",
+        "content": "<p>July 20th commemorates the Colombian Declaration of Independence, a fundamental milestone in the country's history. This day marks the beginning of the independence process.</p><p>It is celebrated with great patriotic fervor, military parades, and cultural events.</p>"
+      },
+      "colombia_01_01": {
+        "title": "New Year's Day",
+        "shortText": "New Year's Day",
+        "image": "colombia_01_01.png",
+        "content": "<p>January 1st celebrates New Year's Day, marking the beginning of a new year. It is a day of celebration and reflection in Colombia.</p>"
+      },
+      "usa_07_04": {
+        "title": "U.S. Independence Day",
+        "shortText": "Independence Day",
+        "image": "usa_07_04.png",
+        "content": "<p>The 4th of July celebrates Independence Day in the United States, commemorating the Declaration of Independence of 1776. It's a day of festivities, fireworks, and family gatherings.</p><p>It is one of the most important national holidays in the country.</p>"
+      },
+      "usa_01_01": {
+        "title": "New Year's Day",
+        "shortText": "New Year's Day",
+        "image": "usa_01_01.png",
+        "content": "<p>January 1st marks New Year's Day, celebrating the beginning of a new year. It's a day of reflection and celebration across the United States.</p>"
+      }
+    }
+  }
+}
