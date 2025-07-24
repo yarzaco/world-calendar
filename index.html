@@ -3,34 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidad - Calendario de Fiestas Nacionales</title>
+    <!-- AÑADE ESTA LÍNEA -->
+    <base href="/world-calendar/"> 
+    <title data-i18n="appTitle"></title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="https://unpkg.com/i18next@23.4.6/i18next.min.js"></script>
 </head>
 <body>
     <header class="header">
         <nav class="navbar">
-            <a href="/" class="nav-link">Inicio</a>
-            <a href="/about.html" class="nav-link">Nosotros</a>
-            <a href="/contact.html" class="nav-link">Contacto</a>
-            <a href="/privacy.html" class="nav-link">Privacidad</a>
+            <a href="/" class="nav-link" data-i18n="home"></a>
+            <a href="/about.html" class="nav-link" data-i18n="about"></a>
+            <a href="/contact.html" class="nav-link" data-i18n="contact"></a>
+            <a href="/privacy.html" class="nav-link" data-i18n="privacy"></a>
+            <div class="language-selector">
+                <label for="lang-select" data-i18n="selectCountry"></label>
+                <select id="lang-select">
+                    <option value="es">Español</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <div class="country-selector">
+                <label for="country-select" data-i18n="selectCountry"></label>
+                <select id="country-select">
+                    <!-- Options will be populated by JavaScript -->
+                </select>
+            </div>
         </nav>
     </header>
 
-    <main class="container static-page">
-        <h1>Política de Privacidad</h1>
-        <p>En nuestro Calendario de Fiestas Nacionales, la privacidad de nuestros usuarios es de suma importancia. Esta política de privacidad describe cómo recopilamos, usamos y protegemos tu información.</p>
-        <h2>Información que Recopilamos</h2>
-        <p>No recopilamos información personal identificable de nuestros usuarios. La aplicación funciona completamente del lado del cliente y no almacena datos de usuario en servidores.</p>
-        <h2>Uso de la Información</h2>
-        <p>La información sobre el país seleccionado se utiliza únicamente para mostrar las fiestas nacionales relevantes en el calendario. No se utiliza para ningún otro propósito ni se comparte con terceros.</p>
-        <h2>Cookies y Tecnologías Similares</h2>
-        <p>Esta aplicación no utiliza cookies ni tecnologías de seguimiento para recopilar información sobre tu navegación.</p>
-        <h2>Enlaces a Terceros</h2>
-        <p>Nuestra aplicación puede contener enlaces a sitios web de terceros. No somos responsables de las prácticas de privacidad de estos sitios. Te recomendamos revisar sus políticas de privacidad.</p>
-        <h2>Cambios en la Política de Privacidad</h2>
-        <p>Podemos actualizar nuestra política de privacidad ocasionalmente. Cualquier cambio será publicado en esta página. Te recomendamos revisar esta política periódicamente.</p>
-        <p>Última actualización: 24 de julio de 2025</p>
+    <main id="app-container" class="container">
+        <!-- Content will be loaded here by JavaScript -->
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
