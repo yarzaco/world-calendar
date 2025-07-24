@@ -1,0 +1,39 @@
+**Cómo funciona esta solución:**
+
+1. **SPA con Next.js Static Export:**
+
+1. La aplicación se construye con Next.js, pero se configura para exportación estática. Esto significa que al ejecutar `next build`, 
+se generarán archivos HTML, CSS y JavaScript que pueden ser servidos por cualquier servidor web estático.
+2. Para habilitar la exportación estática en un proyecto Next.js real, añadirías `output: 'export'` a tu `next.config.js` - En este entorno de v0, 
+no necesitas crear ese archivo, pero es importante saberlo para un proyecto completo.
+- La navegación entre el calendario y los artículos se maneja completamente en el cliente usando la API `history.pushState` de JavaScript, lo que permite URLs limpias (ej. 
+`/article/battle-of-boyaca`) sin que existan archivos HTML físicos para cada artículo en el servidor.
+
+**Detección de País por IP:**
+2. 1. Al cargar la página, se realiza una llamada a `https://ipapi.co/json/` para obtener el código de país del usuario. Este código se utiliza para filtrar las fiestas relevantes en el calendario.
+
+3. **Calendario Dinámico:**
+
+1. El componente `Calendar` muestra el mes actual y resalta los días que son fiesta nacional en el país detectado.
+2. Los datos de las fiestas se cargan desde `public/data/calendar.json`.
+
+4. **Artículos Dinámicos y Traducciones (`i18next`):**
+
+1. Cuando haces clic en un día de fiesta, la aplicación cambia a la vista `ArticleViewer`.
+2. El contenido del artículo (título, texto, imagen) se carga dinámicamente desde los archivos `public/locales/es.json` o `public/locales/en.json` utilizando la librería `i18next`.
+3. El editor solo necesita modificar estos archivos JSON para añadir nuevas fiestas o artículos y sus traducciones, sin tocar el código HTML.
+4. Las imágenes se referencian mediante URLs en el JSON, utilizando el componente `next/image` con URLs de `placeholder.svg` para demostración.
+
+5. **Librerías CDN:**
+
+1. Todas las librerías solicitadas (`Font Awesome`, `SweetAlert2`, `MicroModal`, `Socket.IO`, `i18next`) se incluyen a través de sus CDN en `app/layout.tsx`.
+2. `SweetAlert2` se usa para mostrar mensajes de error si la carga de datos falla.
+3. `MicroModal` y `Socket.IO` se incluyen como solicitaste, aunque no se implementó una funcionalidad específica para ellos en este ejemplo, ya que no se detalló su uso.
+
+**Para instalar y ejecutar este código:**
+
+1. Haz clic en el botón "Download Code" en la esquina superior derecha de la vista de código.
+2. Sigue las instrucciones para configurar un nuevo proyecto Next.js.
+3. Ejecuta `npm install` o `yarn install`.
+4. Ejecuta `npm run dev` o `yarn dev` para ver la aplicación en desarrollo.
+5. Para generar la versión estática, ejecuta `npm run build` y luego `npm run export` (si configuras el script en `package.json` para `next export`). La carpeta `out` contendrá tu SPA estática.
