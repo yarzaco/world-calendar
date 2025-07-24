@@ -280,7 +280,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       return
     }
 
-/ AÑADE ESTAS LÍNEAS TEMPORALES PARA DEPURAR:
+// AÑADE ESTAS LÍNEAS TEMPORALES PARA DEPURAR:
 console.log("foundArticleId:", foundArticleId);
 const rawArticleContent = i18next.t(`translation.articles.${foundArticleId}`, { returnObjects: true });
 console.log("rawArticleContent from i18next:", rawArticleContent);
