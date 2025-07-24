@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       await i18next.init({
         lng: "es", // default language
         fallbackLng: "en",
-        debug: false,
+        debug: true, // <-- CAMBIADO A TRUE PARA MÁS MENSAJES DE DEPURACIÓN DE I18NEXT
         resources: {
           es: esTranslations,
           en: enTranslations,
@@ -86,11 +86,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   // --- Routing ---
   function handleRoute() {
     const path = window.location.pathname
-    if (path === "/" || path === "/index.html") {
+    // Adjust path for GitHub Pages subpath
+    const repoName = "/world-calendar" // Your repository name
+    let cleanPath = path.startsWith(repoName) ? path.substring(repoName.length) : path
+    if (cleanPath === "" || cleanPath === "/") {
+      cleanPath = "/" // Ensure it's just "/" for the root of the SPA
+    }
+
+    if (cleanPath === "/" || cleanPath === "/index.html") {
       renderCalendarView()
-    } else if (path.startsWith("/articles/")) {
-      renderArticleView(path)
-    } else if (path.endsWith(".html")) {
+    } else if (cleanPath.startsWith("/articles/")) {
+      renderArticleView(cleanPath)
+    } else if (cleanPath.endsWith(".html")) {
       // For static HTML pages, we just let the browser load them
       // This SPA setup is primarily for the calendar and dynamic articles
       // If you want to handle these within the SPA, you'd fetch and inject their content
@@ -108,8 +115,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   navLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
       const href = link.getAttribute("href")
+      // Only intercept SPA routes (those starting with / and not ending with .html)
+      // The <base> tag handles the prefixing, so we just use the relative path from base
       if (href.startsWith("/") && !href.endsWith(".html")) {
-        // Only intercept SPA routes
         event.preventDefault()
         window.history.pushState({}, "", href)
         handleRoute()
@@ -229,6 +237,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           const monthNum = date.split("-")[0]
           const dayNum = date.split("-")[1]
           const monthName = i18next.t(`translation.months.${Number.parseInt(monthNum) - 1}`, { defaultValue: "month" }) // Get translated month name
+          // Construct the path relative to the <base> href
           const articlePath = `/articles/${country}/${dayNum}-${monthName.toLowerCase().replace(/\s/g, "-")}-${seoSlug}`
 
           window.history.pushState({ articleId, country, seoSlug, date }, "", articlePath)
@@ -246,7 +255,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Expected path: /articles/country/day-month-slug
     if (parts.length < 4 || parts[1] !== "articles") {
       console.error("Invalid article path:", path)
-      window.history.pushState({}, "", "/") // Redirect to home
+      Swal.fire("Error", "Article not found.", "error")
+      window.history.pushState({}, "", "/")
       renderCalendarView()
       return
     }
@@ -259,11 +269,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     let foundHoliday = null
 
     const countryHolidays = holidaysData.countries[countryCode]?.holidays || []
+
+    // AÑADE ESTOS CONSOLE.LOG PARA DEPURAR EL SLUG Y LA TRADUCCIÓN DEL MES
+    console.log("--- Debugging Article Lookup ---")
+    console.log("URL Path:", path)
+    console.log("Parsed Country Code:", countryCode)
+    console.log("Parsed Slug Part from URL:", slugPart)
+    console.log("Holidays data for current country:", countryHolidays)
+
     for (const holiday of countryHolidays) {
       const monthNum = holiday.date.split("-")[0]
       const dayNum = holiday.date.split("-")[1]
-      const monthName = i18next.t(`translation.months.${Number.parseInt(monthNum) - 1}`, { defaultValue: "month" })
+      const monthName = i18next.t(`translation.months.${Number.parseInt(monthNum) - 1}`, { defaultValue: "month" }) // <-- ¡Este es el sospechoso!
       const expectedSlugPart = `${dayNum}-${monthName.toLowerCase().replace(/\s/g, "-")}-${holiday.seoSlug}`
+
+      console.log(`  Checking holiday ${holiday.articleId}:`)
+      console.log(`    Holiday Date: ${holiday.date}`)
+      console.log(`    Translated Month Name: "${monthName}"`) // ¿Es "Agosto" o "Month"?
+      console.log(`    Generated Expected Slug Part: "${expectedSlugPart}"`)
+      console.log(`    Does it match URL Slug Part? ${expectedSlugPart === slugPart}`)
 
       if (expectedSlugPart === slugPart) {
         foundArticleId = holiday.articleId
@@ -272,27 +296,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
 
+    console.log("Final foundArticleId after loop:", foundArticleId) // Debería ser 'colombia_08_07' si hay coincidencia
+
     if (!foundArticleId) {
+      // <-- Si foundArticleId sigue siendo null, este bloque se activa
       console.error("Article not found for path:", path)
-      Swal.fire("Error", "Article not found.", "error") // This is the error message the user is seeing
-      window.history.pushState({}, "", "/") // Redirect to home
+      Swal.fire("Error", "Article not found.", "error")
+      window.history.pushState({}, "", "/")
       renderCalendarView()
       return
     }
 
-// AÑADE ESTAS LÍNEAS TEMPORALES PARA DEPURAR:
-console.log("foundArticleId:", foundArticleId);
-const rawArticleContent = i18next.t(`translation.articles.${foundArticleId}`, { returnObjects: true });
-console.log("rawArticleContent from i18next:", rawArticleContent);
-// FIN DE LÍNEAS TEMPORALES
-    
+    // Si llegamos aquí, foundArticleId no es null. Ahora verificamos el contenido del artículo.
     const articleContent = i18next.t(`translation.articles.${foundArticleId}`, { returnObjects: true })
 
+    console.log("Content retrieved from i18next for ID", foundArticleId, ":", articleContent) // ¿Qué devuelve i18next?
+
     if (!articleContent || !articleContent.title) {
-      // This is the second check that could fail
       console.error("Article content not found in translations for ID:", foundArticleId)
-      Swal.fire("Error", "Article content missing.", "error") // This is the error message the user is seeing
-      window.history.pushState({}, "", "/") // Redirect to home
+      Swal.fire("Error", "Article content missing.", "error")
+      window.history.pushState({}, "", "/")
       renderCalendarView()
       return
     }
